@@ -27,6 +27,7 @@
     "mongoose": "^8.3.3",
     "nodemailer": "^6.9.13",
     "react-leaflet": "^4.2.1",
+    "react-helmet": "^6.1.0",
     "socket.io": "^4.7.5",
     "stripe": "^15.7.0"
   }

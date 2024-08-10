@@ -67,7 +67,7 @@ export const register = async (req, res, next) => {
   }
 
   // Pass other errors to the error handling middleware
-  next(error);
+  //next(error);
 };
 
 export const login = async (req, res, next) => {
