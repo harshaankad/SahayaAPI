@@ -25,7 +25,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://sahaya-client.vercel.app",
+    origin: "https://sahaya-client.vercel.app/",
     credentials: true,
     methods: ["GET", "POST","PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
