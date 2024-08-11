@@ -29,6 +29,7 @@
     "react-leaflet": "^4.2.1",
     "react-helmet": "^6.1.0",
     "socket.io": "^4.7.5",
-    "stripe": "^15.7.0"
+    "stripe": "^15.7.0",
+    "socket.io": "^4.7.5"
   }
 }
