@@ -27,7 +27,7 @@ const io = new Server(server, {
   cors: {
     origin: "https://sahaya-client.vercel.app",
     credentials: true,
-    methods: ["GET", "POST","PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   },
 });
@@ -39,9 +39,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
+    origin: "https://sahaya-client.vercel.app",
     credentials: true,
   })
 );
+
 app.use(express.json({ urlencoded: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -60,15 +62,24 @@ app.use("/api/stripe", stripeRoutes);
 app.use("/api/donations", supplyRoutes);
 app.use("/api/hospital", hospitalRoutes);
 app.use("/api/responder", responerRoutes);
+
 io.on("connection", (socket) => {
   console.log("New client connected");
-
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
-export default app;
+const PORT = process.env.PORT || 3000;
+
+if (process.env.NODE_ENV !== 'production') {
+  server.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}
+
+export default server;
