@@ -6,6 +6,7 @@ import { generateToken } from "../utils/authUtils.js";
 import Responder from "../models/Responder.js";
 
 dotenv.config();
+
 export const register = async (req, res, next) => {
   try {
     // Check if the username already exists
@@ -64,10 +65,9 @@ export const register = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+    // Pass the error to the error handling middleware
+    next(error);
   }
-
-  // Pass other errors to the error handling middleware
-  next(error);
 };
 
 export const login = async (req, res, next) => {
@@ -95,5 +95,7 @@ export const login = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+    // Pass the error to the error handling middleware
+    next(error);
   }
 };
